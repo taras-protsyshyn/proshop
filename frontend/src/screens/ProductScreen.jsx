@@ -2,12 +2,11 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem } from "react-bootstrap";
 import { Rating } from "../components/Rating";
-import { products } from "../assets/products";
 
 export const ProductScreen = () => {
   const { id: productId } = useParams();
 
-  const product = products.find((p) => p._id === productId);
+  const product = [].find((p) => p._id === productId) || {};
 
   return (
     <>
