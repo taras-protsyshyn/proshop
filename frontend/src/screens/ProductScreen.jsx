@@ -1,12 +1,21 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem } from "react-bootstrap";
+import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+
+import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import { Rating } from "../components/Rating";
 
 export const ProductScreen = () => {
   const { id: productId } = useParams();
+  const { data: product, isLoading, isError, error } = useGetProductDetailsQuery(productId);
 
-  const product = [].find((p) => p._id === productId) || {};
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isError) {
+    return <h1>{error?.data?.message || "Ooooups, something went wrong"}</h1>;
+  }
 
   return (
     <>
