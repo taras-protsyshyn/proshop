@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
-
+import Loader from "../components/Loader";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import { Rating } from "../components/Rating";
 
@@ -10,7 +10,7 @@ export const ProductScreen = () => {
   const { data: product, isLoading, isError, error } = useGetProductDetailsQuery(productId);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   if (isError) {
