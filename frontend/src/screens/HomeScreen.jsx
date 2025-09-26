@@ -1,6 +1,7 @@
 import { Row, Col } from "react-bootstrap";
 import { Product } from "../components/Product";
 import Loader from "../components/Loader";
+import Message from "../components/Message";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 
 export const HomeScreen = () => {
@@ -11,7 +12,7 @@ export const HomeScreen = () => {
   }
 
   if (isError) {
-    return <h1>{error?.data?.message || "Ooooups, something went wrong"}</h1>;
+    return <Message variant="danger">{error?.data?.message}</Message>;
   }
 
   return (
